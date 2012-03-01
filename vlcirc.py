@@ -25,6 +25,8 @@
 # cd C:\Python27\
 # python.exe vlcirc.py AlienPlanet.avi MindeyXX1
 #
+# This project is licensed under GPLv3.0 license:
+# http://www.gnu.org/licenses/gpl-3.0.txt
 
 from random import random
 from sys import argv
