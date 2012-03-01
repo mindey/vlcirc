@@ -1,3 +1,5 @@
+This script works with VLC Player ( http://www.videolan.org/ )
+
 Usage:
 python vlcirc.py /path/to/video/file irc_channel
 
