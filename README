@@ -1,28 +1,48 @@
-#
-# Usage:
-# python vlcirc.py /path/to/video/file irc_channel
-#
-# Example: (Linux and MacOS)
-#
-# 1) Execute command:
-#    python vlcirc.py /home/mindey/AlienPlanet.avi MindeyXX1
-# 2) Open website:
-#    http://webchat.freenode.net/?channels=MindeyXX1
-# 3) Once all of your friends had come to channel, typing:
-#    play time=180
-#
-# Will start VLC player on all of the friends' computers almost simultaneously.
-#
-# For convenience, you may consider adding some thing like:
-#        alias vlci='python /home/mi/vlcirc.py $*'
-# to your ~/.bashrc
+Usage:
+python vlcirc.py /path/to/video/file irc_channel
 
-#
-# Example: (Windows)
-# 
-# cp vlcirc.py C:\Python27\
-# cp AlienPlanet.avi C:\Python27\
-# cd C:\Python27\
-# python.exe vlcirc.py AlienPlanet.avi MindeyXX1
-#
+Example: (Linux and MacOS)
+
+1) Execute command:
+   python vlcirc.py /home/mindey/AlienPlanet.avi MindeyXX1
+2) Open website:
+   http://webchat.freenode.net/?channels=MindeyXX1
+3) Once all of your friends had come to channel, typing:
+   play time=180
+
+Will start VLC player on all of the friends' computers almost simultaneously.
+
+For convenience, you may consider adding some thing like:
+       alias vlci='python /home/mi/vlcirc.py $*'
+to your ~/.bashrc
+
+
+Example: (Windows)
+
+cp vlcirc.py C:\Python27\
+cp AlienPlanet.avi C:\Python27\
+cd C:\Python27\
+python.exe vlcirc.py AlienPlanet.avi MindeyXX1
+
+############################################################
+P.S. I found that libvlc library, although convenient,
+but not readily available on various systems.
+
+I had tried evdev - a keylogger approach, which allows
+one to avoid typing commands in IRC, but it requires admin rights.
+
+Wishing to make it immediately usable on more different platforms,
+I refrained from using these approaches.
+############################################################
+
+To-Do: If computer clocks are in sync, the synchronization could
+be improved by sending exact time, like +1 sec., to avoid error
+due to the different ping times. Do it.
+
+############################################################
+
+
+
+
+
 
