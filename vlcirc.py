@@ -60,6 +60,16 @@ def ircstream():
     if ('play' in data) or ('pause' in data):
       if 'time' in data:
         time = int(data.split('time=')[1].split(' ')[0])
+      elif 'start' in data:
+        T = [int(t) for t in data.split('start=')[1].split(' ')[0].split(':')]
+        if len(T) == 3:
+          time = T[0]*3600+T[1]*60+T[2]
+        elif len(T) == 2:
+          time = T[0]*60+T[1]
+        elif len(T) == 1:
+          time = T[0]
+        else:
+          time = 0
       else:
         time = 0
       # Linux
