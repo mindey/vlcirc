@@ -33,10 +33,15 @@ from sys import argv
 from socket import socket, AF_INET, SOCK_STREAM
 from os import system
 from platform import system as syst
+from time import sleep
 
 video_path = argv[1]
 irc_nickname = 'Ply'+str(int(random()*10**5))
 irc_channel = argv[2]
+try:
+  correction = int(argv[3])
+except:
+  correction = 0
 
 # IRC Connect
 network = 'irc.freenode.net'
@@ -60,8 +65,8 @@ def ircstream():
     if ('play' in data) or ('pause' in data):
       if 'time' in data:
         time = int(data.split('time=')[1].split(' ')[0])
-      elif 'start' in data:
-        T = [int(t) for t in data.split('start=')[1].split(' ')[0].split(':')]
+      elif 'at=' in data:
+        T = [int(t) for t in data.split('at=')[1].split(' ')[0].split(':')]
         if len(T) == 3:
           time = T[0]*3600+T[1]*60+T[2]
         elif len(T) == 2:
@@ -72,6 +77,10 @@ def ircstream():
           time = 0
       else:
         time = 0
+      if correction < 0 and time < abs(correction):
+        sleep(abs(correction)-time)
+      else:
+        time += correction
       # Linux
       if syst()=='Linux':
         system('vlc --start-time %s %s &' % (time,video_path))
