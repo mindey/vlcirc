@@ -63,10 +63,10 @@ def ircstream():
     if 'End of /NAMES list' in data:
       print "Now, join the channel: http://webchat.freenode.net/?channels=%s channel, and type 'play time=180' to start video at 2:00 min." % irc_channel 
     if ('play' in data) or ('pause' in data):
-      if 'time' in data:
-        time = int(data.split('time=')[1].split(' ')[0])
-      elif 'at=' in data:
-        T = [int(t) for t in data.split('at=')[1].split(' ')[0].split(':')]
+      if 'lay time=' in data:
+        time = int(data.split('lay time=')[1].split(' ')[0])
+      elif 'lay at ' in data:
+        T = [int(t) for t in data.split('lay at ')[1].split(' ')[0].split(':')]
         if len(T) == 3:
           time = T[0]*3600+T[1]*60+T[2]
         elif len(T) == 2:
