@@ -39,7 +39,7 @@ video_path = argv[1]
 irc_nickname = 'Ply'+str(int(random()*10**5))
 irc_channel = argv[2]
 try:
-  correction = int(argv[3])
+  correction = float(argv[3])
 except:
   correction = 0
 
@@ -77,10 +77,8 @@ def ircstream():
           time = 0
       else:
         time = 0
-      if correction < 0 and time < abs(correction):
-        sleep(abs(correction)-time)
-      else:
-        time += correction
+      if correction > 0:
+        sleep(correction)
       # Linux
       if syst()=='Linux':
         system('vlc --start-time %s %s &' % (time,video_path))
