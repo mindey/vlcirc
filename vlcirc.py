@@ -32,6 +32,7 @@ from random import random
 from sys import argv
 from socket import socket, AF_INET, SOCK_STREAM
 from os import system
+from os.path import exists
 from platform import system as syst
 from time import sleep
 
@@ -84,7 +85,14 @@ def ircstream():
         system('vlc --start-time %s %s &' % (time,video_path))
       # Mac-OS
       elif syst()=='Darwin':
-        system('/Applications/VLC.app/Contents/MacOS/VLC --start-time %s %s &' % (time,video_path))
+        if exists('/Applications/VLC.app/Contents/MacOS/VLC'):
+          system('/Applications/VLC.app/Contents/MacOS/VLC --start-time %s %s &' % (time,video_path))
+        else:
+          versions = ['1.1.2', '1.1.3', '1.1.4', '1.1.4.1', '1.1.5', '1.1.6', '1.1.7', '1.1.8', '1.1.9', '2.0.0', '2.0.1']
+          for version in versions:
+            if exists('/Volumes/vlc-%s/VLC.app/Contents/MacOS/VLC' % version):
+              system('/Volumes/vlc-%s/VLC.app/Contents/MacOS/VLC --start-time %s %s &' % (version,time,video_path))
+              break
       # Win-OS
       elif syst()=='Windows':
         system('"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe" --start-time %s %s &' % (time,video_path))
