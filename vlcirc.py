@@ -88,14 +88,19 @@ def ircstream():
         if exists('/Applications/VLC.app/Contents/MacOS/VLC'):
           system('/Applications/VLC.app/Contents/MacOS/VLC --start-time %s %s &' % (time,video_path))
         else:
-          versions = ['1.1.2', '1.1.3', '1.1.4', '1.1.4.1', '1.1.5', '1.1.6', '1.1.7', '1.1.8', '1.1.9', '2.0.0', '2.0.1']
+          versions = ['1.1.2', '1.1.3', '1.1.4', '1.1.4.1', '1.1.5', '1.1.6', '1.1.7', '1.1.8', '1.1.9', \
+                      '2.0.0', '2.0.1', '2.0.2', '2.0.3', '2.0.4', '2.0.5', '2.0.6']
+          # If your version is not here, more versions are: http://download.videolan.org/pub/videolan/vlc/
           for version in versions:
             if exists('/Volumes/vlc-%s/VLC.app/Contents/MacOS/VLC' % version):
               system('/Volumes/vlc-%s/VLC.app/Contents/MacOS/VLC --start-time %s %s &' % (version,time,video_path))
               break
       # Win-OS
       elif syst()=='Windows':
-        system('"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe" --start-time %s %s &' % (time,video_path))
+        if exists('C:\\Program Files\\VideoLAN\\VLC\\vlc.exe'):
+            system('"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe" --start-time %s %s &' % (time,video_path))
+        if exists('C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe'):
+            system('"C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe" --start-time %s %s &' % (time,video_path))
   pass
 
 # Main
