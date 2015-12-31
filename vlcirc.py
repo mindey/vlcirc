@@ -22,8 +22,8 @@
 #
 # Example: (Windows)
 # 
-# cp vlcirc.py C:\Python27\
-# cp YourVideoFile.avi C:\Python27\
+# copy vlcirc.py C:\Python27\
+# copy YourVideoFile.avi C:\Python27\
 # cd C:\Python27\
 # python.exe vlcirc.py YourVideoFile.avi your_irc_channel
 #
@@ -82,31 +82,33 @@ irc.send ( 'JOIN #%s\r\n' % irc_channel)
 
 # IRC Stream
 def ircstream():
-  while True:
 
-    data = irc.recv ( 4096 )
+    while True:
 
-    print data # IRC channel data
+        data = irc.recv ( 4096 )
 
-    if data.find ( 'PING' ) != -1:
-        irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
+        print data # IRC channel data
 
-    if 'End of /NAMES list' in data:
-        print "Now, join the channel: http://webchat.freenode.net/?channels=%s channel, and type 'play at 1:30' to start video at 1:30 min." % irc_channel 
+        if data.find ( 'PING' ) != -1:
+            irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
 
-    if 'play at' in data:
-        T = [int(t) for t in data.split('lay at ')[1].split(' ')[0].split(':')][::-1]
-        S = [3600, 60, 1][::-1][:len(T)]
+        if 'End of /NAMES list' in data:
+            print "Now, join the channel: http://webchat.freenode.net/?channels=%s" % irc_channel + \
+                " channel, and type 'play' to start, or 'play at 1:30' to start video at 1 min 30 sec." 
 
-        if T:
-            time = sum([t*s for t,s in zip(T[:len(S)], S)])
-        else:
-            time = 0
+        if 'play at' in data:
+            T = [int(t) for t in data.split('lay at ')[1].split(' ')[0].split(':')][::-1]
+            S = [3600, 60, 1][::-1][:len(T)]
 
-        print 'TIME=',time
-        system('%s --start-time %s %s &' % (vlc_path, time, video_path))
+            if T:
+                time = sum([t*s for t,s in zip(T[:len(S)], S)])
+            else:
+                time = 0
 
-  pass
+            print 'TIME=',time
+            system('%s --start-time %s %s &' % (vlc_path, time, video_path))
+
+    pass
 
 # Main
 ircstream()
