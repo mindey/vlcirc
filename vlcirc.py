@@ -35,6 +35,8 @@ from os import system
 from os.path import exists
 from platform import system as syst
 from time import sleep
+import re
+import urllib2
 
 video_path = argv[1]
 irc_nickname = 'Ply'+str(int(random()*10**5))
@@ -88,8 +90,9 @@ def ircstream():
         if exists('/Applications/VLC.app/Contents/MacOS/VLC'):
           system('/Applications/VLC.app/Contents/MacOS/VLC --start-time %s %s &' % (time,video_path))
         else:
-          versions = ['1.1.2', '1.1.3', '1.1.4', '1.1.4.1', '1.1.5', '1.1.6', '1.1.7', '1.1.8', '1.1.9', \
-                      '2.0.0', '2.0.1', '2.0.2', '2.0.3', '2.0.4', '2.0.5', '2.0.6']
+          url = 'http://download.videolan.org/pub/videolan/vlc/'
+          versions = re.findall('(?<=")(\d+\.\d+\.\d+(?=/))', urllib2.urlopen(url).read())
+          # versions = [..,'2.0.0', '2.0.1', '2.0.2', '2.0.3', '2.0.4', '2.0.5', '2.0.6',..]
           # If your version is not here, more versions are: http://download.videolan.org/pub/videolan/vlc/
           for version in versions:
             if exists('/Volumes/vlc-%s/VLC.app/Contents/MacOS/VLC' % version):
