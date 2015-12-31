@@ -1,20 +1,20 @@
 #
 # Usage:
-# python vlcirc.py /path/to/video/file irc_channel
+# python2.7 vlcirc.py /path/to/video/file irc_channel
 #
 # Example: (Linux and MacOS)
 #
 # 1) Execute command:
-#    python vlcirc.py /home/mindey/AlienPlanet.avi MindeyXX1
+#    python vlcirc.py /home/mindey/AlienPlanet.avi your_irc_channel
 # 2) Open website:
-#    http://webchat.freenode.net/?channels=MindeyXX1
+#    http://webchat.freenode.net/?channels=your_irc_channel
 # 3) Once all of your friends had come to channel, typing:
 #    play time=180
 #
 # Will start VLC player on all of the friends' computers almost simultaneously.
 #
 # For convenience, you may consider adding some thing like:
-#        alias vlci='python /home/mi/vlcirc.py $*'
+#        alias vlcirc='python /home/user/vlcirc.py $*'
 # to your ~/.bashrc
 
 #
@@ -64,7 +64,7 @@ def ircstream():
       irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
     print data # IRC channel data
     if 'End of /NAMES list' in data:
-      print "Now, join the channel: http://webchat.freenode.net/?channels=%s channel, and type 'play time=180' to start video at 2:00 min." % irc_channel 
+        print "Now, join the channel: http://webchat.freenode.net/?channels=%s channel, and type 'play at 1:30' to start video at 1:30 min." % irc_channel 
     if ('play' in data) or ('pause' in data):
       if 'lay time=' in data:
         time = int(data.split('lay time=')[1].split(' ')[0])
