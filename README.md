@@ -10,6 +10,8 @@ Then in the channel:
 ```
 # To start players at zero time:
 <irc_user> play at 0
+```
+```
 # To start players at custom time:
 <irc_user> play at h:mm:ss
 ```
