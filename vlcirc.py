@@ -1,6 +1,8 @@
 #
 # Usage:
 # python2.7 vlcirc.py /path/to/video/file your_irc_channel
+# <irc_user> play
+# <irc_user> play at 1:30
 #
 # Example: (Linux and MacOS)
 #
