@@ -1,15 +1,15 @@
 #
 # Usage:
-# python2.7 vlcirc.py /path/to/video/file irc_channel
+# python2.7 vlcirc.py /path/to/video/file your_irc_channel
 #
 # Example: (Linux and MacOS)
 #
 # 1) Execute command:
-#    python vlcirc.py /home/mindey/AlienPlanet.avi your_irc_channel
+#    python2.7 vlcirc.py /home/mindey/YourVideoFile.avi your_irc_channel
 # 2) Open website:
 #    http://webchat.freenode.net/?channels=your_irc_channel
 # 3) Once all of your friends had come to channel, typing:
-#    play time=180
+#    play at h:mm:ss
 #
 # Will start VLC player on all of the friends' computers almost simultaneously.
 #
@@ -21,9 +21,9 @@
 # Example: (Windows)
 # 
 # cp vlcirc.py C:\Python27\
-# cp AlienPlanet.avi C:\Python27\
+# cp YourVideoFile.avi C:\Python27\
 # cd C:\Python27\
-# python.exe vlcirc.py AlienPlanet.avi MindeyXX1
+# python.exe vlcirc.py YourVideoFile.avi your_irc_channel
 #
 # This project is licensed under GPLv3.0 license:
 # http://www.gnu.org/licenses/gpl-3.0.txt
