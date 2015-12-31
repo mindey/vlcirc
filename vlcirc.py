@@ -1,34 +1,14 @@
-#
 # Usage:
+#
 # python2.7 vlcirc.py /path/to/video/file your_irc_channel
-# <irc_user> play
 # <irc_user> play at h:mm:ss
 #
-# Example: (Linux and MacOS)
-#
-# 1) Execute command:
-#    python2.7 vlcirc.py /home/mindey/YourVideoFile.avi your_irc_channel
-# 2) Open website:
-#    http://webchat.freenode.net/?channels=your_irc_channel
-# 3) Once all of your friends had come to channel, typing:
-#    play at h:mm:ss
-#
-# Will start VLC player on all of the friends' computers almost simultaneously.
+# For example:
+# <irc_user> play at 0
 #
 # For convenience, you may consider adding some thing like:
-#        alias vlcirc='python /home/user/vlcirc.py $*'
-# to your ~/.bashrc
-
-#
-# Example: (Windows)
-# 
-# copy vlcirc.py C:\Python27\
-# copy YourVideoFile.avi C:\Python27\
-# cd C:\Python27\
-# python.exe vlcirc.py YourVideoFile.avi your_irc_channel
-#
-# This project is licensed under GPLv3.0 license:
-# http://www.gnu.org/licenses/gpl-3.0.txt
+#    alias vlcirc='python /home/user/vlcirc.py $*'
+# to your ~/.bashrc or ~/.zshrc
 
 from random import random
 from sys import argv
@@ -94,10 +74,11 @@ def ircstream():
 
         if 'End of /NAMES list' in data:
             print "Now, join the channel: http://webchat.freenode.net/?channels=%s" % irc_channel + \
-                " channel, and type 'play' to start, or 'play at 1:30' to start video at 1 min 30 sec." 
+                " channel, and type 'play at 0' to start, or 'play at 1:30' to start video at 1 min 30 sec." 
+
 
         if 'play at' in data:
-            T = [int(t) for t in data.split('lay at ')[1].split(' ')[0].split(':')][::-1]
+            T = [int(t) for t in data.split('play at ')[1].split(' ')[0].split(':')][::-1]
             S = [3600, 60, 1][::-1][:len(T)]
 
             if T:

@@ -8,7 +8,9 @@ python2.7 vlcirc.py /path/to/video/file your_irc_channel
 
 Then in the channel:
 ```
-<irc_user> play
+# To start players at zero time:
+<irc_user> play at 0
+# To start players at custom time:
 <irc_user> play at h:mm:ss
 ```
 
@@ -36,8 +38,8 @@ to your ~/.bashrc or ~/.zshrc.
 
 ## Example: (Windows)
 ```
-cp vlcirc.py C:\Python27\
-cp YourVideoFile.avi C:\Python27\
+copy vlcirc.py C:\Python27\
+copy YourVideoFile.avi C:\Python27\
 cd C:\Python27\
 python.exe vlcirc.py YourVideoFile.avi your_irc_channel
 ```
